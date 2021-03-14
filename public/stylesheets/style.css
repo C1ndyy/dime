@@ -5,6 +5,9 @@ main {
 
 content {
   margin: 20px;
+  width: 90%;
+  /* max-width: 200vw; */
+  min-width: 50vw;
 }
 
 content > div {
@@ -13,6 +16,11 @@ content > div {
   border-radius: 20px;
   padding: 10px;
   box-shadow: 5px 5px 30px#e0dfdf;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* #top-nav {
@@ -26,6 +34,58 @@ a:focus {
   color: inherit;
 }
 
+/*--------------------------------------- Form---------------------------------------*/
+
+label {
+  text-align: right;
+  margin-right: 20px;
+  margin-left: 0px;
+}
+form {
+  align-self: center;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 500px;
+  min-width: 500px;
+  margin: 10px;
+}
+
+.input-group {
+  max-width: 350px;
+  min-width: 350px;
+  margin-bottom: 20px;
+}
+
+.row {
+  margin-right: 10px;
+}
+h3 {
+  align-self: flex-start;
+  margin: 0px 0px 50px 10px;
+}
+
+p {
+  align-self: center;
+}
+
+fieldset > label {
+  display: flex;
+  flex-direction: column;
+}
+
+/* IMAGE STYLES */
+[type="radio"]:hover + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type="radio"]:checked + img {
+  -webkit-filter: drop-shadow(1px 1px 5px rgb(195, 201, 255));
+  filter: drop-shadow(1px 1px 5px rgb(168, 168, 168));
+}
+/*--------------------------------------- Nav Bar ---------------------------------------*/
 #side-nav-container {
   display: flex;
   text-decoration: none;
@@ -73,3 +133,27 @@ a:focus {
 /* .navbar-collapse.show {
   right: 80%;
 } */
+
+@media only screen and (max-width: 768px) {
+  main {
+    height: 100vh;
+  }
+  #side-nav-container {
+    display: none;
+  }
+
+  label {
+    text-align: left;
+  }
+
+  form {
+    max-width: 400px;
+    min-width: 400px;
+  }
+  .input-group {
+    margin-bottom: 20px;
+    margin-right: 10px;
+    max-width: 280px;
+    min-width: 280px;
+  }
+}
