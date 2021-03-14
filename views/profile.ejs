@@ -36,13 +36,30 @@
     <main>
       <%- include('./partials/side-nav') %>
       <content>
-        <h1>Financial Profile</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, in
-          corporis nesciunt et a quos perspiciatis hic, enim, delectus optio
-          possimus modi at eligendi ullam similique! Expedita exercitationem
-          iste modi.
-        </p>
+        <div>
+          <h3>Financial Profile</h3>
+          <form id="financial-profile">
+            <div class="form-group row">
+              <label for="description" class="col-form-label"
+                >Monthly Income</label
+              >
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="Amount (to the nearest dollar)"
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-secondary">
+              Save
+            </button>
+          </form>
+        </div>
       </content>
     </main>
   </body>

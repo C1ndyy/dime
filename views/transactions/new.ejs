@@ -39,66 +39,121 @@
         <div>
           <h3>Add a Transaction</h3>
           <form id="new-transaction">
-            <div class="form-group row">
-              <label for="description" class="col-form-label"
-                >Description</label
-              >
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="description"
-                  placeholder="What is this expense for..."
-                />
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="description" class="col-form-label">Amount</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">$</span>
+            <div id="input-container">
+              <div class="form-group row">
+                <label for="description" class="col-form-label"
+                  >Description</label
+                >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="description"
+                    placeholder="What is this expense for..."
+                  />
                 </div>
-                <input
-                  type="text"
-                  class="form-control"
-                  aria-label="Amount (to the nearest dollar)"
-                />
+              </div>
+
+              <div class="form-group row">
+                <label for="description" class="col-form-label">Amount</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    aria-label="Amount (to the nearest dollar)"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="date" class="col-form-label">Date</label>
+                <div class="input-group">
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date"
+                    placeholder="Date"
+                  />
+                </div>
               </div>
             </div>
-
-            <div class="form-group row">
-              <label for="date" class="col-form-label">Date</label>
-              <div class="input-group">
-                <input
-                  type="date"
-                  class="form-control"
-                  id="date"
-                  placeholder="Date"
-                />
-              </div>
-            </div>
-
             <p>Pick a Category</p>
             <fieldset>
               <label for="food">
-                <input type="radio" name="food" class="sr-only" id="food" />
-                <img src="/images/icons/eating-out.png" />Eating Out
+                <input type="radio" name="category" class="sr-only" id="food" />
+                <img src="/images/icons/eat-out.png" />Eating Out
               </label>
 
-              <input type="radio" name="gender" class="sr-only" id="female" />
-              <label for="female">
-                <img
-                  src="https://icons8.com/icon/116993/add-shopping-cart.png"
+              <label for="transportation">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  id="transportation"
                 />
+                <img src="/images/icons/transportation.png" />Transportation
               </label>
-            </fieldset>
-          </form>
 
-          <a target="_blank" href="https://icons8.com/icons/set/dumbbell"
-            >Icons</a
-          >
-          by <a target="_blank" href="https://icons8.com">Icons8</a>
+              <label for="health">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  id="health"
+                />
+                <img src="/images/icons/health.png" />Health/Fitness
+              </label>
+
+              <label for="groceries">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  id="groceries"
+                />
+                <img src="/images/icons/groceries.png" />Groceries
+              </label>
+
+              <label for="pets">
+                <input type="radio" name="category" class="sr-only" id="pets" />
+                <img src="/images/icons/pets.png" />Pets
+              </label>
+
+              <label for="entertainment">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  id="entertainment"
+                />
+                <img src="/images/icons/entertainment.png" />Entertainment
+              </label>
+
+              <label for="home">
+                <input type="radio" name="category" class="sr-only" id="home" />
+                <img src="/images/icons/home.png" />Home
+              </label>
+
+              <label for="miscellaneous">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  id="miscellaneous"
+                />
+                <img src="/images/icons/miscellaneous.png" />Miscellaneous
+              </label>
+
+              <a target="_blank" href="https://icons8.com"> ©icons by Icons8</a>
+            </fieldset>
+
+            <button type="submit" class="btn btn-outline-secondary">
+              Add Transaction
+            </button>
+          </form>
         </div>
       </content>
     </main>
