@@ -1,10 +1,23 @@
 main {
   display: flex;
+  background-color: #f1f1f1;
 }
 
 content {
   margin: 20px;
 }
+
+content > div {
+  background-color: white;
+  border: 1px solid #e3e6f0;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 5px 5px 30px#e0dfdf;
+}
+
+/* #top-nav {
+  background-color: #396bad !important;
+} */
 
 a,
 a:hover,

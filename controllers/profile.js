@@ -1,5 +1,7 @@
 function index(req, res) {
-  res.render("profile");
+  res.render("profile", {
+    user: req.user,
+  });
 }
 
 module.exports = {

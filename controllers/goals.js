@@ -1,5 +1,7 @@
 function index(req, res) {
-  res.render("goals");
+  res.render("goals", {
+    user: req.user,
+  });
 }
 
 module.exports = {
