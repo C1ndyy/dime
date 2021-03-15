@@ -18,6 +18,7 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+    <script defer src="/javascripts/profile.js"></script>
   </head>
   <body>
     <%- include('./partials/top-nav') %>
@@ -37,7 +38,7 @@
                 name="description"
                 aria-describedby="help"
               />
-              <div id="help" class="form-text">ex. new car, tuition, etc..</div>
+              <div id="help" class="form-text">ex. new car, laptop, tuition, etc..</div>
             </div>
 
             <div class="mb-3 col-11 col-md-8">
@@ -48,6 +49,7 @@
                   type="number"
                   class="form-control"
                   aria-label="Dollar amount"
+                  id="monthly-income"
                 />
               </div>
             </div>

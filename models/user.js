@@ -13,9 +13,18 @@ const monthlyPaymentSchema = new Schema(
 
 const goalSchema = new Schema(
   {
-    description: String,
-    amount: Number,
-    monthlyGoalPayments: Number,
+    description: {
+      type: String,
+      default: null,
+    },
+    amount: {
+      type: Number,
+      default: 0,
+    },
+    monthlyGoalPayments: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,
@@ -36,10 +45,19 @@ const transactionSchema = new Schema(
 
 const portfolioSchema = new Schema(
   {
-    income: Number,
-    montlysavings: Number,
+    income: {
+      type: Number,
+      default: 0,
+    },
+    montlysavings: {
+      type: Number,
+      default: 0,
+    },
     monthlyPayments: [monthlyPaymentSchema],
-    goal: [goalSchema],
+    goal: {
+      type: goalSchema,
+      default: () => ({}),
+    },
   },
   {
     timestamps: true,
@@ -50,7 +68,11 @@ const userSchema = new Schema(
   {
     name: String,
     email: String,
-    porfolio: [portfolioSchema],
+    porfolio: {
+      type: portfolioSchema,
+      default: () => ({}),
+    },
+
     transactions: [transactionSchema],
     googleId: String,
   },
