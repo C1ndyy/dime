@@ -4,7 +4,7 @@ var router = express.Router();
 let transactionsCtrl = require("../controllers/transactions");
 
 router.get("/", isLoggedIn, transactionsCtrl.index);
-router.get("/new", isLoggedIn, transactionsCtrl.new);
+router.get("/new", transactionsCtrl.new);
 
 // Insert this middleware for routes that require a logged in user
 function isLoggedIn(req, res, next) {

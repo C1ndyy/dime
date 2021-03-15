@@ -3,7 +3,7 @@ var router = express.Router();
 
 let profileCtrl = require("../controllers/profile");
 
-router.get("/", isLoggedIn, profileCtrl.index);
+router.get("/", profileCtrl.index);
 
 // Insert this middleware for routes that require a logged in user
 function isLoggedIn(req, res, next) {
