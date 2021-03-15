@@ -7,30 +7,15 @@
     <title>Test</title>
 
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-      integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
   </head>
@@ -41,52 +26,51 @@
       <content>
         <div>
           <h3>Add a Transaction</h3>
-          <form id="new-transaction">
-            <div id="input-container">
-              <div class="form-group row">
-                <label for="description" class="col-form-label"
-                  >Description</label
-                >
-                <div class="input-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="description"
-                    placeholder="What is this expense for..."
-                  />
-                </div>
-              </div>
+          <form action="/transactions" method="POST">
+            <div class="mb-3 col-11 col-md-8">
+              <label for="description" class="form-label">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                placeholder="What is this expense for.."
+                name="description"
+              />
+            </div>
 
-              <div class="form-group row">
-                <label for="description" class="col-form-label">Amount</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">$</span>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    aria-label="Amount (to the nearest dollar)"
-                  />
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <label for="date" class="col-form-label">Date</label>
-                <div class="input-group">
-                  <input
-                    type="date"
-                    class="form-control"
-                    id="date"
-                    placeholder="Date"
-                  />
-                </div>
+            <div class="mb-3 col-11 col-md-8">
+              <label for="amount" class="form-label">Amount</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input
+                  type="number"
+                  class="form-control"
+                  aria-label="Dollar amount"
+                  name="amount"
+                />
               </div>
             </div>
+
+            <div class="mb-3 col-11 col-md-8">
+              <label for="date" class="col-form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                placeholder="Date"
+                name="date"
+              />
+            </div>
+
             <p>Pick a Category</p>
             <fieldset>
               <label for="food">
-                <input type="radio" name="category" class="sr-only" id="food" />
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="food"
+                />
                 <img src="/images/icons/eat-out.png" />Eating Out
               </label>
 
@@ -95,7 +79,7 @@
                   type="radio"
                   name="category"
                   class="sr-only"
-                  id="transportation"
+                  value="transportation"
                 />
                 <img src="/images/icons/transportation.png" />Transportation
               </label>
@@ -105,7 +89,7 @@
                   type="radio"
                   name="category"
                   class="sr-only"
-                  id="health"
+                  value="health"
                 />
                 <img src="/images/icons/health.png" />Health/Fitness
               </label>
@@ -115,7 +99,7 @@
                   type="radio"
                   name="category"
                   class="sr-only"
-                  id="groceries"
+                  value="groceries"
                 />
                 <img src="/images/icons/groceries.png" />Groceries
               </label>
@@ -130,7 +114,7 @@
                   type="radio"
                   name="category"
                   class="sr-only"
-                  id="entertainment"
+                  value="entertainment"
                 />
                 <img src="/images/icons/entertainment.png" />Entertainment
               </label>
@@ -145,7 +129,7 @@
                   type="radio"
                   name="category"
                   class="sr-only"
-                  id="miscellaneous"
+                  value="miscellaneous"
                 />
                 <img src="/images/icons/miscellaneous.png" />Miscellaneous
               </label>
