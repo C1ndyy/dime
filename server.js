@@ -6,6 +6,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("express-session"); //<------Oauth
 var passport = require("passport"); //<------Oauth
+const MongoDBStore = require("connect-mongodb-session")(session); //<-------Session - stay logged in
 var methodOverride = require("method-override"); //<------Method Override
 require("./config/database"); //<-----Database
 require("./config/passport"); //<------Oauth
@@ -33,6 +34,11 @@ app.use(
     secret: "SEIRocks!",
     resave: false,
     saveUninitialized: true,
+    store: MongoDBStore({
+      collection: "sessions",
+      uri: process.env.DATABASE_URL,
+      databaseName: "dime",
+    }),
   })
 );
 app.use(passport.initialize());

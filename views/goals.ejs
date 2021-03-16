@@ -18,7 +18,7 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
-    <script defer src="/javascripts/profile.js"></script>
+    <script defer src="/javascripts/goals.js"></script>
   </head>
   <body>
     <%- include('./partials/top-nav') %>
@@ -26,8 +26,8 @@
       <%- include('./partials/side-nav') %>
       <content>
         <div>
-          <h3>Goals</h3>
-          <form>
+          <h3>Goals &nbsp; <span id="edit-goal"> <img src="/images/icons/edit.svg"></span></h3>
+          <form action="/goals?_method=PUT" method="POST">
             <h6>What would you like to save up for?</h6>
             <div class="mb-3 col-11 col-md-8">
               <label for="description" class="form-label">Description</label>
@@ -37,6 +37,9 @@
                 id="description"
                 name="description"
                 aria-describedby="help"
+                placeholder="<%= description %>"
+                value="<%= description %>"
+                disabled
               />
               <div id="help" class="form-text">ex. new car, laptop, tuition, etc..</div>
             </div>
@@ -47,16 +50,20 @@
                 <span class="input-group-text">$</span>
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   aria-label="Dollar amount"
                   id="monthly-income"
+                  name="amount"
+                  value="<%= amount.toFixed(2) %>"
+                  disabled
                 />
               </div>
             </div>
 
             <div id="range-slider" class="mb-3 col-11 col-md-8">
               <label class="form-label">How much would you like to contribute to your goal every month?</label>
-              <div id="slider-value"><span>$0.00</span></div>
+              <div id="slider-value"><span>$<%= monthlyGoalPayments.toFixed(2) %></span></div>
               <div id="sliderbar-container">
                 <div id="range-left">0%</div>
                 <input
@@ -65,13 +72,14 @@
                   min="0"
                   max="100"
                   id="customRange1"
+                  name="monthlyGoalPayments"
                   disabled
                 />
                 <div id="range-right">100%</div>
               </div>
             </div>
 
-            <button type="submit" class="btn btn-outline-secondary">
+            <button id="save" type="submit" class="btn btn-outline-secondary" disabled>
               Save
             </button>
           </form>

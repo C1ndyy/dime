@@ -16,7 +16,6 @@ async function index(req, res) {
 
 async function editProfile(req, res) {
   try {
-    console.log(req.body);
     let user = await User.findById(req.user.id);
     user.portfolio.income = req.body.income;
     user.portfolio.monthlySavings =

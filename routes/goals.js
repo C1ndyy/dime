@@ -3,7 +3,8 @@ var router = express.Router();
 
 let goalsCtrl = require("../controllers/goals");
 
-router.get("/", goalsCtrl.index);
+router.get("/", isLoggedIn, goalsCtrl.index);
+router.put("/", isLoggedIn, goalsCtrl.edit);
 
 // Insert this middleware for routes that require a logged in user
 function isLoggedIn(req, res, next) {

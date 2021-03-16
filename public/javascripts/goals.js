@@ -6,6 +6,7 @@ let mediaQuery = window.matchMedia("(min-width: 768px)");
 const monthlyIncome = document.getElementById("monthly-income");
 const sliderValue = document.querySelector("#slider-value > span");
 const sliderInput = document.querySelector("#sliderbar-container >input");
+const goalEditIcon = document.getElementById("edit-goal");
 const profileEditIcon = document.getElementById("edit-profile");
 const description = document.getElementById("description");
 const saveButton = document.getElementById("save");
@@ -25,10 +26,11 @@ function setSliderPosition() {
   }
 }
 
-function enableProfileEdit() {
+function enableGoalEdit() {
   monthlyIncome.removeAttribute("disabled");
   sliderInput.removeAttribute("disabled");
   saveButton.removeAttribute("disabled");
+  description.removeAttribute("disabled");
 }
 
 setSliderPosition();
@@ -54,6 +56,6 @@ sliderInput.addEventListener("input", function (e) {
   }
 });
 
-profileEditIcon.addEventListener("click", function (e) {
-  enableProfileEdit();
+goalEditIcon.addEventListener("click", function (e) {
+  enableGoalEdit();
 });
