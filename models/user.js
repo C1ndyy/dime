@@ -36,7 +36,10 @@ const transactionSchema = new Schema(
     description: String,
     amount: Number,
     category: String,
-    date: Date,
+    date: {
+      type: Date,
+      default: new Date(),
+    },
   },
   {
     timestamps: true,
@@ -49,7 +52,7 @@ const portfolioSchema = new Schema(
       type: Number,
       default: 0,
     },
-    montlysavings: {
+    monthlySavings: {
       type: Number,
       default: 0,
     },
@@ -68,7 +71,7 @@ const userSchema = new Schema(
   {
     name: String,
     email: String,
-    porfolio: {
+    portfolio: {
       type: portfolioSchema,
       default: () => ({}),
     },

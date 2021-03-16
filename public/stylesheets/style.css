@@ -103,9 +103,9 @@ fieldset img {
   max-width: 50px;
 }
 
-/* input[type="radio"] {
+input[type="radio"] {
   display: none;
-} */
+}
 
 /* IMAGE STYLES */
 [type="radio"]:hover + img {
@@ -147,9 +147,6 @@ form button {
   left: 50%;
 }
 
-#slider-value {
-  left: 50%;
-}
 #range-left,
 #range-right {
   margin-left: 5px;
@@ -221,7 +218,7 @@ form button {
   }
 
   h3 {
-    margin: 0px 0px 50px 10px;
+    margin: 0px 0px 20px 10px;
   }
 
   form {

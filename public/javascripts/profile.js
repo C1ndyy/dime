@@ -8,12 +8,21 @@ const sliderValue = document.querySelector("#slider-value > span");
 const sliderInput = document.querySelector("#sliderbar-container >input");
 
 //--------------------------functions--------------------------//
+function setSliderPosition() {
+  let d = Number(sliderValue.innerHTML.substring(1));
+  sliderInput.value = monthlyIncome.value / d;
+  if (mediaQuery.matches) {
+    sliderValue.style.left = sliderInput.value + "%";
+  } else {
+    sliderValue.style.left = sliderInput.value * 0.85 + "%";
+  }
+}
 
+setSliderPosition();
 //----------------------event listeners----------------------//
 let montlyIncomeValue;
 monthlyIncome.addEventListener("change", function (e) {
   monthlyIncomeValue = e.target.value;
-  console.log(monthlyIncomeValue);
   monthlyIncomeValue != null
     ? sliderInput.removeAttribute("disabled")
     : sliderInput.addAttribute("disabled");

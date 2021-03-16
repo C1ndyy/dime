@@ -35,6 +35,7 @@
                 id="description"
                 placeholder="What is this expense for.."
                 name="description"
+                required
               />
             </div>
 
@@ -44,9 +45,12 @@
                 <span class="input-group-text">$</span>
                 <input
                   type="number"
+                  step="any"
                   class="form-control"
                   aria-label="Dollar amount"
                   name="amount"
+                  placeholder="0.00"
+                  required
                 />
               </div>
             </div>
@@ -57,8 +61,9 @@
                 type="date"
                 class="form-control"
                 id="date"
-                placeholder="Date"
+                value="<%= dt %>"
                 name="date"
+                required
               />
             </div>
 
@@ -70,6 +75,8 @@
                   name="category"
                   class="sr-only"
                   value="food"
+                  id="food"
+                  required
                 />
                 <img src="/images/icons/eat-out.png" />Eating Out
               </label>
@@ -80,6 +87,7 @@
                   name="category"
                   class="sr-only"
                   value="transportation"
+                  id="transportation"
                 />
                 <img src="/images/icons/transportation.png" />Transportation
               </label>
@@ -90,6 +98,7 @@
                   name="category"
                   class="sr-only"
                   value="health"
+                  id="health"
                 />
                 <img src="/images/icons/health.png" />Health/Fitness
               </label>
@@ -100,12 +109,19 @@
                   name="category"
                   class="sr-only"
                   value="groceries"
+                  id="groceries"
                 />
                 <img src="/images/icons/groceries.png" />Groceries
               </label>
 
               <label for="pets">
-                <input type="radio" name="category" class="sr-only" id="pets" />
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="pets"
+                  id="pets"
+                />
                 <img src="/images/icons/pets.png" />Pets
               </label>
 
@@ -115,12 +131,19 @@
                   name="category"
                   class="sr-only"
                   value="entertainment"
+                  id="entertainment"
                 />
                 <img src="/images/icons/entertainment.png" />Entertainment
               </label>
 
               <label for="home">
-                <input type="radio" name="category" class="sr-only" id="home" />
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="home"
+                  id="home"
+                />
                 <img src="/images/icons/home.png" />Home
               </label>
 
@@ -130,6 +153,8 @@
                   name="category"
                   class="sr-only"
                   value="miscellaneous"
+                  id="miscellaneous"
+                  checked
                 />
                 <img src="/images/icons/miscellaneous.png" />Miscellaneous
               </label>
