@@ -31,8 +31,27 @@ async function createTransaction(req, res) {
   }
 }
 
+async function show(req, res) {
+  console.log(req.user.id);
+  console.log(req.params.transactionid);
+  // let transaction = await User.findOne({
+  //   _id: req.user.id,
+  //   "transactions._id": req.params.transactionid,
+  // });
+  let user = await User.findById(req.user.id);
+  let transaction = user.transactions.id(req.params.transactionid);
+
+  console.log(transaction);
+
+  res.render("transactions/edit", {
+    user: req.user,
+    transaction: transaction,
+  });
+}
+
 module.exports = {
   index,
   new: newTransaction,
   create: createTransaction,
+  show,
 };

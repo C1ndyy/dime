@@ -42,7 +42,11 @@
                 <td scope="row"><%= t.date.toDateString().slice(4, 10) %></td>
                 <td><%= t.description %></td>
                 <td>$ <%= t.amount %></td>
-                <td>edit</td>
+                <td>
+                  <a href="/transactions/<%= t.id %>"
+                    ><span class="material-icons"> create </span></a
+                  >
+                </td>
               </tr>
               <% }); %>
             </tbody>

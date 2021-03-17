@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script defer src="/javascripts/editTransaction.js"></script>
+  </head>
+  <body>
+    <%- include('../partials/top-nav') %>
+    <main>
+      <%- include('../partials/side-nav') %>
+      <content>
+        <div>
+          <h3>Edit Transaction</h3>
+          <form action="/transactions" method="POST">
+            <div class="mb-3 col-11 col-md-8">
+              <label for="description" class="form-label">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                name="description"
+                value="<%= transaction.description %>"
+                required
+              />
+            </div>
+
+            <div class="mb-3 col-11 col-md-8">
+              <label for="amount" class="form-label">Amount</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input
+                  type="number"
+                  step="any"
+                  class="form-control"
+                  aria-label="Dollar amount"
+                  name="amount"
+                  value="<%= transaction.amount.toFixed(2) %>"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-3 col-11 col-md-8">
+              <label for="date" class="col-form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                value="<%= transaction.date.toISOString().slice(0, 10) %>"
+                name="date"
+                required
+              />
+            </div>
+
+            <p>Pick a Category</p>
+            <fieldset id="id-<%= transaction.category %>">
+              <label for="food">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="food"
+                  id="food"
+                  required
+                />
+                <img src="/images/icons/eat-out.png" />Eating Out
+              </label>
+
+              <label for="transportation">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="transportation"
+                  id="transportation"
+                />
+                <img src="/images/icons/transportation.png" />Transportation
+              </label>
+
+              <label for="health">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="health"
+                  id="health"
+                />
+                <img src="/images/icons/health.png" />Health/Fitness
+              </label>
+
+              <label for="groceries">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="groceries"
+                  id="groceries"
+                />
+                <img src="/images/icons/groceries.png" />Groceries
+              </label>
+
+              <label for="pets">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="pets"
+                  id="pets"
+                />
+                <img src="/images/icons/pets.png" />Pets
+              </label>
+
+              <label for="entertainment">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="entertainment"
+                  id="entertainment"
+                />
+                <img src="/images/icons/entertainment.png" />Entertainment
+              </label>
+
+              <label for="home">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="home"
+                  id="home"
+                />
+                <img src="/images/icons/home.png" />Home
+              </label>
+
+              <label for="miscellaneous">
+                <input
+                  type="radio"
+                  name="category"
+                  class="sr-only"
+                  value="miscellaneous"
+                  id="miscellaneous"
+                />
+                <img src="/images/icons/miscellaneous.png" />Miscellaneous
+              </label>
+
+              <a target="_blank" href="https://icons8.com"> ©icons by Icons8</a>
+            </fieldset>
+
+            <button type="submit" class="btn btn-outline-secondary">
+              Save
+            </button>
+          </form>
+        </div>
+      </content>
+    </main>
+  </body>
+</html>
