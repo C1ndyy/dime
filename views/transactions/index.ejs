@@ -18,6 +18,7 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+    <script defer src="/javascripts/indexTransaction.js"></script>
   </head>
   <body>
     <%- include('../partials/top-nav') %>
@@ -25,32 +26,63 @@
       <%- include('../partials/side-nav') %>
       <content>
         <div>
+          <h3>Search</h3>
           <form id="search" action="/transactions" method="GET">
-            <div class="col-xs-6 col-md-6">
+            <div class="mb-3 col-10 col-md-8">
               <input
                 class="form-control"
                 type="search"
                 placeholder="Find a Transaction..."
                 aria-label="Search"
                 name="description"
-                value="<%= query %>"
+                value="<%= query.description %>"
               />
             </div>
 
-            <div class="col-xs-3 col-md-3">
-              <button
-                id="search-button"
-                class="btn btn-outline-secondary"
-                type="submit"
+            <div class="mb-3 col-10 col-md-8">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                name="category"
+                id="id-<%= query.category %>"
               >
-                <span class="material-icons"> search </span>
-              </button>
+                <option selected>All Categories</option>
+                <option id="food" value="food">Eating Out</option>
+                <option id="transportation" value="transportation">
+                  Transportation
+                </option>
+                <option id="health" value="health">Health/Fitness</option>
+                <option id="groceries" value="groceries">Groceries</option>
+                <option id="pets" value="pets">Pets</option>
+                <option id="entertainment" value="entertainment">
+                  Entertainment
+                </option>
+                <option id="home" value="home">Home</option>
+                <option id="miscellaneous" value="miscellaneous">
+                  Miscellaneous
+                </option>
+              </select>
             </div>
+
+            <button
+              class="btn btn-outline-secondary col-5 col-md-3"
+              type="submit"
+              id="search-button"
+            >
+              <span class="material-icons"> search </span>
+            </button>
+          </form>
+
+          <form id="clear-filters" action="/transactions" method="GET">
+            <button class="btn btn-outline-secondary icon-button">
+              Clear Filters
+            </button>
           </form>
         </div>
 
         <div>
           <h3>Transactions</h3>
+          <% if (allTransactions.length) { %>
           <table class="table">
             <thead>
               <tr>
@@ -68,7 +100,7 @@
                   <%= t.date.toDateString().slice(4, 10) %>
                 </td>
                 <td><%= t.description %></td>
-                <td>$ <%= t.amount %></td>
+                <td>$ <%= t.amount.toFixed(2) %></td>
                 <td>
                   <a href="/transactions/<%= t.id %>"
                     ><span class="material-icons"> create </span></a
@@ -78,6 +110,9 @@
               <% }); %>
             </tbody>
           </table>
+          <% } else { %>
+          <h6>No Transactions to Show</h6>
+          <% } %>
         </div>
       </content>
     </main>

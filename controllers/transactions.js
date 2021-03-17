@@ -4,21 +4,27 @@ async function index(req, res) {
   try {
     let user = await User.findById(req.user.id);
     let transactions = user.transactions;
-    let result;
+    let result = transactions;
     console.log(req.query);
-    if (!req.query.description) {
-      result = transactions;
-    } else {
-      result = transactions.filter((item) =>
+    // filter by search parameter
+    if (req.query.description) {
+      result = result.filter((item) =>
         item.description.includes(req.query.description)
       );
     }
+    if (req.query.category && req.query.category !== "All Categories") {
+      result = result.filter((item) =>
+        item.category.includes(req.query.category)
+      );
+    }
+    // sort results by date
     result.sort((a, b) => b.date - a.date);
-    console.log(result);
+    // console.log(result);
+    // render
     res.render("transactions/index", {
       user: req.user,
       allTransactions: result,
-      query: req.query.description,
+      query: req.query,
     });
   } catch (err) {
     return res.send("there was an error");

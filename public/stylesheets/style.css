@@ -134,7 +134,7 @@ fieldset a {
 }
 
 form button {
-  margin: 10px;
+  margin: 5px;
 }
 
 /*----------------------------- Financial Profile Slider -----------------------------*/
@@ -227,18 +227,18 @@ form button {
 }
 
 /*--------------------------------------- Search Bar-----------------------------------*/
-#search {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-#search-button {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
 #search-button > span {
   transform: translateY(3px);
+}
+
+#clear-filters {
+  margin: 0px;
+}
+#clear-filters > button {
+  border: none;
+  background-color: transparent;
+  margin-top: 0px;
+  font-size: 14px;
 }
 /*-------------------------------------Media Query-------------------------------------*/
 @media only screen and (min-width: 769px) {
@@ -282,5 +282,11 @@ form button {
   fieldset {
     margin-left: 50px;
     margin-right: 50px;
+  }
+  #search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 }
