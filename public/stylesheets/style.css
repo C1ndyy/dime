@@ -211,6 +211,23 @@ form button {
 #side-nav img {
   margin-right: 10px;
 }
+
+/*--------------------------------------- Buttons-----------------------------------*/
+
+#delete-transaction {
+  border: hidden;
+  background-color: transparent;
+  margin-top: 0px;
+  transform: translateY(3px);
+}
+
+#delete-form {
+  display: inline;
+  margin-left: 0px;
+}
+
+/*--------------------------------------- Tables-----------------------------------*/
+
 /*-------------------------------------Media Query-------------------------------------*/
 @media only screen and (min-width: 769px) {
   #side-nav-container {

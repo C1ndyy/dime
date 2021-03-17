@@ -2,7 +2,7 @@ const sideNav = document.getElementById("side-nav-container");
 const menuButton = document.getElementById("menu-button");
 const content = document.querySelector("content");
 const menuItems = document.querySelector("#side-nav>ul");
-let mediaQuery = window.matchMedia("(min-width: 768px)");
+// let mediaQuery = window.matchMedia("(min-width: 768px)");
 
 function openSideNav() {
   //   sideNav.style.display = "flex";
@@ -27,13 +27,13 @@ menuButton.addEventListener("click", function (e) {
   }
 });
 
-if (mediaQuery.matches) {
-  sideNav.style.minWidth = "250px";
-  sideNav.style.maxWidth = "250px";
-  menuItems.style.display = "block";
-} else {
-  sideNav.style.minWidth = "0px";
-  sideNav.style.maxWidth = "0px";
-  content.style.marginLeft = "20px";
-  menuItems.style.display = "none";
-}
+// if (mediaQuery.matches) {
+//   sideNav.style.minWidth = "250px";
+//   sideNav.style.maxWidth = "250px";
+//   menuItems.style.display = "block";
+// } else {
+//   sideNav.style.minWidth = "0px";
+//   sideNav.style.maxWidth = "0px";
+//   content.style.marginLeft = "20px";
+//   menuItems.style.display = "none";
+// }

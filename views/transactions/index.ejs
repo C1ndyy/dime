@@ -39,7 +39,9 @@
             <tbody>
               <% allTransactions.forEach(function(t) { %>
               <tr>
-                <td scope="row"><%= t.date.toDateString().slice(4, 10) %></td>
+                <td nowrap="nowrap" scope="row">
+                  <%= t.date.toDateString().slice(4, 10) %>
+                </td>
                 <td><%= t.description %></td>
                 <td>$ <%= t.amount %></td>
                 <td>

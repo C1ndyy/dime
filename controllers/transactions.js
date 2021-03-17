@@ -49,9 +49,41 @@ async function show(req, res) {
   });
 }
 
+async function edit(req, res) {
+  try {
+    let user = await User.findById(req.user.id);
+    console.log(req.body);
+    let transaction = user.transactions.id(req.params.transactionid);
+    transaction.description = req.body.description;
+    transaction.amount = req.body.amount;
+    transaction.date = req.body.date;
+    transaction.category = req.body.category;
+    await user.save();
+    res.redirect("/transactions/");
+  } catch (err) {
+    console.log(err);
+    res.send("there was an error");
+  }
+}
+
+async function deleteTransaction(req, res) {
+  try {
+    let user = await User.findById(req.user.id);
+    let transaction = user.transactions.id(req.params.transactionid);
+    transaction.remove();
+    await user.save();
+    res.redirect("/transactions/");
+  } catch (err) {
+    console.log(err);
+    res.send("there was an error");
+  }
+}
+
 module.exports = {
   index,
   new: newTransaction,
   create: createTransaction,
   show,
+  edit,
+  delete: deleteTransaction,
 };
