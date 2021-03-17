@@ -226,8 +226,20 @@ form button {
   margin-left: 0px;
 }
 
-/*--------------------------------------- Tables-----------------------------------*/
-
+/*--------------------------------------- Search Bar-----------------------------------*/
+#search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+#search-button {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+#search-button > span {
+  transform: translateY(3px);
+}
 /*-------------------------------------Media Query-------------------------------------*/
 @media only screen and (min-width: 769px) {
   #side-nav-container {

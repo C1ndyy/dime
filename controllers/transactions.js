@@ -3,9 +3,22 @@ const User = require("../models/user");
 async function index(req, res) {
   try {
     let user = await User.findById(req.user.id);
+    let transactions = user.transactions;
+    let result;
+    console.log(req.query);
+    if (!req.query.description) {
+      result = transactions;
+    } else {
+      result = transactions.filter((item) =>
+        item.description.includes(req.query.description)
+      );
+    }
+    result.sort((a, b) => b.date - a.date);
+    console.log(result);
     res.render("transactions/index", {
       user: req.user,
-      allTransactions: user.transactions,
+      allTransactions: result,
+      query: req.query.description,
     });
   } catch (err) {
     return res.send("there was an error");
