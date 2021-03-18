@@ -45,7 +45,10 @@ a:focus {
   text-decoration: none;
   color: inherit;
 }
-
+h6 {
+  text-align: center;
+  margin: 10px;
+}
 /*--------------------------------------- Form---------------------------------------*/
 
 label {
@@ -249,6 +252,11 @@ form button {
 }
 
 /*--------------------------------------- Dashboard-----------------------------------*/
+
+canvas {
+  max-height: 600px !important;
+  max-width: 600px !important;
+}
 #goal-status {
   display: flex;
   margin-bottom: -10px;
@@ -275,8 +283,9 @@ form button {
 
 .progress-bar {
   border-radius: 10px;
-  background-color: goldenrod;
+  background-color: #fb7b8e;
 }
+
 /*-------------------------------------Media Query-------------------------------------*/
 @media only screen and (min-width: 769px) {
   #side-nav-container {

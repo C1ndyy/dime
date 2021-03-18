@@ -1,37 +1,76 @@
 const User = require("../models/user");
 let currentMonth = new Date().getMonth() + 1;
 let currentYear = new Date().getFullYear();
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
 
 async function index(req, res) {
   try {
     let user = await User.findById(req.user.id);
     let transactions = user.transactions;
     let bills = user.portfolio.monthlyPayments;
-    //----------------------------Donut Chart---------------------------//
+    //----------------------------Donut Chart 1---------------------------//
     let spendPerCategory = sumPerCategory(transactions);
+
+    //Dataset for Chart 1
+    let labels1 = Object.keys(spendPerCategory);
+    let data1 = Object.values(spendPerCategory);
+
+    //----------------------------Donut Chart 2---------------------------//
+
+    const totalTransactions = data1.reduce((sum, b) => sum + b, 0);
     let totalBills = sumBills(bills);
+    let remaining =
+      user.portfolio.income -
+      totalBills -
+      totalTransactions -
+      user.portfolio.monthlySavings -
+      user.portfolio.goal.monthlyGoalPayments;
 
-    //add spend per transaction category
-    let categories = Object.keys(spendPerCategory);
-    let amounts = Object.values(spendPerCategory);
+    let labels2 = [
+      "Transactions",
+      "Recurring Bills",
+      "Savings",
+      "Goal Fund",
+      "Remaining Budget",
+    ];
+    let data2 = [
+      totalTransactions,
+      totalBills,
+      user.portfolio.monthlySavings,
+      user.portfolio.goal.monthlyGoalPayments,
+      remaining.toFixed(2),
+    ];
 
-    //add monthly recurring bills
-    categories.push("Recurring Bills");
-    amounts.push(totalBills);
-
-    //add money put towards savings
-    categories.push("Savings");
-    amounts.push(user.portfolio.monthlySavings);
-
-    //add monthly put towards goal
-    categories.push("Goal Fund");
-    amounts.push(user.portfolio.goal.monthlyGoalPayment);
-
-    console.log(categories);
-    console.log(amounts);
-
-    console.log("total bills:", totalBills);
-    console.log(spendPerCategory);
+    let datasets = [
+      {
+        label: "My",
+        data: 12,
+        backgroundColor: ["rgb(23,99,132)"],
+      },
+      {
+        label: "first ",
+        data: 14,
+        backgroundColor: ["rgb(99,99,132)"],
+      },
+      {
+        label: "dataset",
+        data: 12,
+        backgroundColor: ["rgb(255,99,132)"],
+      },
+    ];
 
     //------------------------Recent Transactions-----------------------//
     // sort results by date
@@ -42,9 +81,13 @@ async function index(req, res) {
     // render
     res.render("dashboard", {
       user: req.user,
+      month: monthNames[currentMonth - 1],
       allTransactions: transactions,
-      categories: categories,
-      amounts: amounts,
+      labels1,
+      data1,
+      labels2,
+      data2,
+      datasets,
     });
   } catch (err) {
     console.log(err);
