@@ -227,6 +227,9 @@ form button {
 }
 
 /*--------------------------------------- Search Bar-----------------------------------*/
+#search-button {
+  margin-top: 0px;
+}
 #search-button > span {
   transform: translateY(3px);
 }
@@ -239,6 +242,40 @@ form button {
   background-color: transparent;
   margin-top: 0px;
   font-size: 14px;
+}
+
+#clear-filters > button:hover {
+  color: var(--heading-text);
+}
+
+/*--------------------------------------- Dashboard-----------------------------------*/
+#goal-status {
+  display: flex;
+  margin-bottom: -10px;
+  white-space: nowrap;
+}
+
+#goal-text > p {
+  text-align: right;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#goal-number {
+  font-size: 60px;
+  font-weight: bolder;
+  margin: 10px;
+  transform: translateY(-15px);
+}
+
+.progress {
+  width: 90%;
+  border-radius: 10px;
+}
+
+.progress-bar {
+  border-radius: 10px;
+  background-color: goldenrod;
 }
 /*-------------------------------------Media Query-------------------------------------*/
 @media only screen and (min-width: 769px) {
@@ -288,5 +325,13 @@ form button {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+  }
+
+  #search-button {
+    transform: translateY(-6px);
+    padding-bottom: 0px;
+  }
+  #search-button > span {
+    transform: translateY(0px);
   }
 }

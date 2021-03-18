@@ -12,19 +12,115 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
   <body>
     <%- include('./partials/top-nav') %>
     <main>
       <%- include('./partials/side-nav') %>
       <content>
-        <div></div>
+        <div>
+          <h3>Dashboard</h3>
+          <div id="goal-status">
+            <div id="goal-text">
+              <p>You are</p>
+              <p>days away from</p>
+              <p>reaching your goal</p>
+            </div>
+            <div id="goal-number">39</div>
+          </div>
+          <div class="progress" style="height: 20px">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: 25%"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              25%
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Spend</h3>
+          <canvas id="myChart"></canvas>
+          <script>
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var chart = new Chart(ctx, {
+              // The type of chart we want to create
+              type: "doughnut",
+
+              // The data for our dataset
+              data: {
+                labels: <%- JSON.stringify(categories) %>,
+
+                datasets: [{
+                  label: 'My first dataset',
+                  data: <%- JSON.stringify(amounts) %>,
+                  backgroundColor: [
+                    'rgb(255,99,132)',
+                    'rgb(54,162,235)',
+                    'rgb(255,205,86',
+                  ]
+                  }],
+
+              },
+
+              // Configuration options go here
+              options: {
+                plugins: {
+                  legend: {
+                    display: false
+                  }
+                }
+              },
+            });
+          </script>
+        </div>
+
+        <div>
+          <h3>Recent Transactions</h3>
+          <% if (allTransactions.length) { %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 20%">Date</th>
+                <th scope="col" style="width: 40%">Description</th>
+                <th scope="col" style="width: 30%">Amount</th>
+                <th scope="col" style="width: 10%"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% allTransactions.forEach(function(t) { %>
+              <tr>
+                <td nowrap="nowrap" scope="row">
+                  <%= t.date.toDateString().slice(4, 10) %>
+                </td>
+                <td><%= t.description %></td>
+                <td>$ <%= t.amount.toFixed(2) %></td>
+                <td>
+                  <a href="/transactions/<%= t.id %>"
+                    ><span class="material-icons"> create </span></a
+                  >
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+          <% } else { %>
+          <h5>Start by adding some transactions!</h5>
+          <% } %>
+        </div>
       </content>
     </main>
   </body>
