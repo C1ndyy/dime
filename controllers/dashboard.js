@@ -53,25 +53,19 @@ async function index(req, res) {
       user.portfolio.goal.monthlyGoalPayments,
       remaining.toFixed(2),
     ];
-
-    let datasets = [
-      {
-        label: "My",
-        data: 12,
-        backgroundColor: ["rgb(23,99,132)"],
-      },
-      {
-        label: "first ",
-        data: 14,
-        backgroundColor: ["rgb(99,99,132)"],
-      },
-      {
-        label: "dataset",
-        data: 12,
-        backgroundColor: ["rgb(255,99,132)"],
-      },
-    ];
-
+    //---------------------------Goal Tracker---------------------------//
+    let goalStart = user.portfolio.goal.updatedAt;
+    let dailyPayment = user.portfolio.goal.monthlyGoalPayments / 30;
+    let currentDate = new Date();
+    var diff = Math.floor(
+      (Date.parse(currentDate) - Date.parse(goalStart)) / 86400000
+    );
+    let daysRemaining = Math.floor(
+      user.portfolio.goal.amount / dailyPayment - diff
+    );
+    let percentComplete = Math.floor(
+      ((diff * dailyPayment) / user.portfolio.goal.amount) * 100
+    );
     //------------------------Recent Transactions-----------------------//
     // sort results by date
     transactions.sort((a, b) => b.date - a.date);
@@ -87,7 +81,8 @@ async function index(req, res) {
       data1,
       labels2,
       data2,
-      datasets,
+      daysRemaining,
+      percentComplete,
     });
   } catch (err) {
     console.log(err);
