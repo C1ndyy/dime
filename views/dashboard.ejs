@@ -167,7 +167,8 @@
               <% allTransactions.forEach(function(t) { %>
               <tr>
                 <td nowrap="nowrap" scope="row">
-                  <%= t.date.toDateString().slice(4, 10) %>
+                  <%= t.date.toDateString().slice(4,7) %> <%= t.date.getDate()
+                  +1%>
                 </td>
                 <td><%= t.description %></td>
                 <td>$ <%= t.amount.toFixed(2) %></td>
