@@ -15,7 +15,12 @@
   >
     <span id="menu-button" class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">dime</a>
+  <div class="navbar-brand">
+    <img
+      src="https://img.icons8.com/fluent-systems-regular/24/FFFFFF/money-box--v1.png"
+    />
+    <a href="#">dime</a>
+  </div>
   <% if (user) { %>
   <span class="navbar-text ml-auto">
     Hello, <%= user.name.split(" ")[0] %>

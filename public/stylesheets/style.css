@@ -168,16 +168,31 @@ form button {
 
 /*--------------------------------------- Nav Bar ---------------------------------------*/
 #top-nav {
-  justify-content: space-between;
+  display: flex;
+  justify-content: flex-start;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+#top-nav > ul {
+  justify-self: flex-end;
+}
+
+.navbar-brand {
+  margin-right: 0px;
+  align-self: flex-start;
+}
+
+.navbar-text {
+  margin-left: 8vw;
+  margin-right: 8vw;
 }
 
 #side-nav-container {
   /* display: none; */
   text-decoration: none;
   transition: 0.3s;
-  height: 100vh;
+  height: 200vh;
   width: 0px;
   background-color: var(--side-nav);
   /* min-width: 250px;
@@ -293,8 +308,13 @@ canvas {
     min-width: 250px;
     max-width: 250px;
   }
+
   #side-nav > ul {
     display: block;
+  }
+
+  #top-nav {
+    justify-content: space-between;
   }
 
   label {
@@ -342,5 +362,11 @@ canvas {
   }
   #search-button > span {
     transform: translateY(0px);
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .navbar-text {
+    display: none;
   }
 }
