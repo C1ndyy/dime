@@ -279,6 +279,10 @@ canvas {
   white-space: nowrap;
 }
 
+#goal-text {
+  padding-top: 12px;
+}
+
 #goal-text > p {
   text-align: right;
   margin-bottom: 5px;
@@ -289,7 +293,7 @@ canvas {
   font-size: 60px;
   font-weight: bolder;
   margin: 10px;
-  transform: translateY(-15px);
+  padding-bottom: 10px;
 }
 
 .progress {
