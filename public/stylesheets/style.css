@@ -128,7 +128,7 @@ input[type="radio"] {
 /* CHECKED STYLES */
 [type="radio"]:checked + img {
   border: 4px solid rgb(120, 119, 134);
-  border-radius: 50px;
+  border-radius: 100px;
 }
 
 #icons-credit {
