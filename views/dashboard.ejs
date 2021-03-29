@@ -1,187 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard</title>
+    <!-- BOOTSTRAP -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/stylesheets/style.css" />
 
-  <link rel="stylesheet" href="/stylesheets/style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
-    integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
-    crossorigin="anonymous"></script>
-  <script defer src="/javascripts/dashboard.js"></script>
-</head>
+    <!-- Chart JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+      integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
-  <%- include('./partials/top-nav') %>
+  <body>
+    <%- include('./partials/top-nav') %>
     <main>
       <%- include('./partials/side-nav') %>
-        <content>
-          <div>
-            <h3>Dashboard</h3>
-            <% if (user.portfolio.goal.amount !=0) { %>
-              <div id="goal-status">
-                <div id="goal-text">
-                  <p>You are</p>
-                  <p>days away from reaching</p>
-                  <p>your goal of "<%= user.portfolio.goal.description %>"</p>
-                </div>
-                <div id="goal-number">
-                  <%= daysRemaining %>
-                </div>
-              </div>
-              <div class="progress" style="height: 20px">
-                <div class="progress-bar" role="progressbar" style="width: <%= percentComplete %>%" aria-valuenow="25"
-                  aria-valuemin="0" aria-valuemax="100">
-                  <%= percentComplete %>%
-                </div>
-              </div>
-              <% } else { %>
-                <h4>Welcome!</h4>
-                <h6><a href="/goals">Add a goal</a> to start tracking progress</h6>
-                <% } %>
+      <content>
+        <div>
+          <h3>Dashboard</h3>
+          <% if (user.portfolio.goal.amount !=0) { %>
+          <div id="goal-status">
+            <div id="goal-text">
+              <p>You are</p>
+              <p>days away from reaching</p>
+              <p>your goal of "<%= user.portfolio.goal.description %>"</p>
+            </div>
+            <div id="goal-number"><%= daysRemaining %></div>
           </div>
-
-          <div class="dashboard">
-            <h3>
-              <%= month %> Budget Summary
-            </h3>
-            <% if (allTransactions.length) { %>
-
-              <canvas id="myChart1"></canvas>
-              <script>
-                var ctx1 = document.getElementById("myChart1").getContext("2d");
-                var chart1 = new Chart(ctx1, {
-                  // The type of chart we want to create
-                  type: "doughnut",
-
-                  // The data for our dataset
-                  data: {
-                    labels: <% - JSON.stringify(labels2) %>,
-
-                    datasets: [{
-                      label: 'My first dataset',
-                      data: <% - JSON.stringify(data2) %>,
-                      backgroundColor: [
-                        '#031B88',
-                        '#6096FD',
-                        '#AAB6FB',
-                        '#FB7B8E',
-                        '#E7E7E7',
-                      ]
-                    }],
-                  },
-
-                  // Configuration options go here
-                  options: {
-                    showDatasetLabels: true,
-                    legend: {
-                      display: true,
-                      position: 'left',
-                      align: 'middle'
-                    }
-                  },
-                });
-              </script>
-              <% } else { %>
-                <h6><a href="/profile">Fill out your Financial Profile</a> to get started!</h6>
-                <% } %>
+          <div class="progress" style="height: 20px">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              style="width: <%= percentComplete %>%"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <%= percentComplete %>%
+            </div>
           </div>
+          <% } else { %>
+          <h4>Welcome!</h4>
+          <h6><a href="/goals">Add a goal</a> to start tracking progress</h6>
+          <% } %>
+        </div>
 
-          <div class="dashboard">
-            <h3>
-              <%= month %> Transactions
-            </h3>
-            <% if (data1.length) { %>
-              <canvas id="myChart"></canvas>
-              <script>
-                var ctx = document.getElementById("myChart").getContext("2d");
-                var chart = new Chart(ctx, {
-                  // The type of chart we want to create
-                  type: "doughnut",
+        <div class="dashboard">
+          <h3><%= month %> Budget Summary</h3>
+          <% if (allTransactions.length) { %>
 
-                  // The data for our dataset
-                  data: {
-                    labels: <% - JSON.stringify(labels1) %>,
+          <canvas id="myChart1"></canvas>
+          <script>
+            var ctx1 = document.getElementById("myChart1").getContext("2d");
+            var chart1 = new Chart(ctx1, {
+              // The type of chart we want to create
+              type: "doughnut",
 
-                    datasets: [{
-                      label: 'My first dataset',
-                      data: <% - JSON.stringify(data1) %>,
-                      backgroundColor: [
-                        '#7BD5F5',
-                        '#787FF6',
-                        '#4ADEDE',
-                        '#1CA7EC',
-                        '#1F2F98',
-                        '#D3E7EE',
-                        '#3B5284',
-                        '#706695',
-                        '#BFB8DA',
-                      ]
-                    }],
+              // The data for our dataset
+              data: {
+                labels: <%- JSON.stringify(labels2) %>,
 
-                  },
+                datasets: [{
+                  label: 'My first dataset',
+                  data: <%- JSON.stringify(data2) %>,
+                  backgroundColor: [
+                    '#031B88',
+                    '#6096FD',
+                    '#AAB6FB',
+                    '#FB7B8E',
+                    '#E7E7E7',
+                  ]
+                }],
+              },
 
-                  // Configuration options go here
-                  options: {
-                    legend: {
-                      display: false,
-                      position: 'left',
-                    }
-                  },
-                });
-              </script>
-              <% } else { %>
-                <h6><a href="/transactions/new">Add some transactions </a>this month to access insights</h6>
-                <% } %>
-          </div>
+              // Configuration options go here
+              options: {
+                showDatasetLabels: true,
+                legend: {
+                  display: true,
+                  position: 'left',
+                  align: 'middle'
+                }
+              },
+            });
+          </script>
+          <% } else { %>
+          <h6>
+            <a href="/profile">Fill out your Financial Profile</a> to get
+            started!
+          </h6>
+          <% } %>
+        </div>
 
-          <div>
-            <h3>Recent Transactions</h3>
-            <% if (allTransactions.length) { %>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col" style="width: 20%">Date</th>
-                    <th scope="col" style="width: 40%">Description</th>
-                    <th scope="col" style="width: 30%">Amount</th>
-                    <th scope="col" style="width: 10%"></th>
-                  </tr>
-                </thead>
+        <div class="dashboard">
+          <h3><%= month %> Transactions</h3>
+          <% if (data1.length) { %>
+          <canvas id="myChart"></canvas>
+          <script>
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var chart = new Chart(ctx, {
+              // The type of chart we want to create
+              type: "doughnut",
 
-                <tbody>
-                  <% allTransactions.forEach(function(t) { %>
-                    <tr>
-                      <td nowrap="nowrap" scope="row">
-                        <%= t.date.toDateString().slice(4,7) %>
-                          <%= t.date.getDate() +1%>
-                      </td>
-                      <td>
-                        <%= t.description %>
-                      </td>
-                      <td>$ <%= t.amount.toFixed(2) %>
-                      </td>
-                      <td>
-                        <a href="/transactions/<%= t.id %>"><span class="material-icons"> create </span></a>
-                      </td>
-                    </tr>
-                    <% }); %>
-                </tbody>
-              </table>
-              <% } else { %>
-                <h6>No transactions to show</h6>
-                <% } %>
-          </div>
-        </content>
+              // The data for our dataset
+              data: {
+                labels: <%- JSON.stringify(labels1) %>,
+
+                datasets: [{
+                  label: 'My first dataset',
+                  data: <%- JSON.stringify(data1) %>,
+                  backgroundColor: [
+                    '#7BD5F5',
+                    '#787FF6',
+                    '#4ADEDE',
+                    '#1CA7EC',
+                    '#1F2F98',
+                    '#D3E7EE',
+                    '#3B5284',
+                    '#706695',
+                    '#BFB8DA',
+                  ]
+                }],
+
+              },
+
+              // Configuration options go here
+              options: {
+                legend: {
+                  display: false,
+                  position: 'left',
+                }
+              },
+            });
+          </script>
+          <% } else { %>
+          <h6>
+            <a href="/transactions/new">Add some transactions </a>this month to
+            access insights
+          </h6>
+          <% } %>
+        </div>
+
+        <div>
+          <h3>Recent Transactions</h3>
+          <% if (allTransactions.length) { %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col" style="width: 20%">Date</th>
+                <th scope="col" style="width: 40%">Description</th>
+                <th scope="col" style="width: 30%">Amount</th>
+                <th scope="col" style="width: 10%"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% allTransactions.forEach(function(t) { %>
+              <tr>
+                <td nowrap="nowrap" scope="row">
+                  <%= t.date.toDateString().slice(4,7) %> <%= t.date.getDate()
+                  +1%>
+                </td>
+                <td><%= t.description %></td>
+                <td>$ <%= t.amount.toFixed(2) %></td>
+                <td>
+                  <a href="/transactions/<%= t.id %>"
+                    ><span class="material-icons"> create </span></a
+                  >
+                </td>
+              </tr>
+              <% }); %>
+            </tbody>
+          </table>
+          <% } else { %>
+          <h6>No transactions to show</h6>
+          <% } %>
+        </div>
+      </content>
     </main>
-</body>
-
+  </body>
 </html>
