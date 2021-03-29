@@ -12,6 +12,7 @@ async function index(req, res) {
         item.description.includes(req.query.description)
       );
     }
+    // filter by category
     if (req.query.category && req.query.category !== "All Categories") {
       result = result.filter((item) =>
         item.category.includes(req.query.category)
@@ -19,7 +20,6 @@ async function index(req, res) {
     }
     // sort results by date
     result.sort((a, b) => b.date - a.date);
-    // console.log(result);
     // render
     res.render("transactions/index", {
       user: req.user,
