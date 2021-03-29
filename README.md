@@ -29,7 +29,9 @@ dime was built in a week as the second project of my General Assembly immersive 
 
 ## Technologies Used
 
-- Node JS, EJS, CSS, JS, MongoDB, Mongoose
+- HTML, CSS, JS
+- Node JS, Express, MongoDB, Mongoose
+- Bootstrap, Chart JS
 
 ## Next Steps
 
